@@ -1,8 +1,8 @@
 package com.akuleshov7.ktoml.annotations
 
+import kotlin.annotation.AnnotationTarget.PROPERTY
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialInfo
-import kotlin.annotation.AnnotationTarget.PROPERTY
 
 /**
  * Instructs the encoder to serialize a [String] or [CharSequence] as a literal
