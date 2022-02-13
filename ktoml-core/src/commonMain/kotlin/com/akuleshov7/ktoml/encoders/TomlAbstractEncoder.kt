@@ -54,7 +54,7 @@ public abstract class TomlAbstractEncoder(
     private var isInlineTable = false
 
     private var comments: List<String>? = null
-    private var eolComment: String? = null
+    private var inlineComment: String? = null
 
     protected fun nextElementIndex(): Int = ++elementIndex
 
@@ -168,7 +168,7 @@ public abstract class TomlAbstractEncoder(
                 is TomlInteger -> integerRepresentation = it.representation
                 is TomlComment -> {
                     comments = it.lines.asList()
-                    eolComment = it.endOfLine
+                    inlineComment = it.inline
                 }
                 is TomlInlineTable -> isInlineTable = true
                 else -> { }
