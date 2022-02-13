@@ -7,3 +7,7 @@ import kotlinx.serialization.SerializationException
 public sealed class TomlEncodingException(message: String) : SerializationException(message)
 
 internal class TomlWritingException(message: String) : TomlEncodingException(message)
+
+internal class InternalEncodingException(message: String) : TomlEncodingException(message)
+
+internal class UnsupportedEncodingFeatureException(message: String) : TomlEncodingException(message)
