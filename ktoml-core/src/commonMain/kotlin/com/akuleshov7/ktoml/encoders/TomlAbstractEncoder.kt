@@ -2,7 +2,7 @@ package com.akuleshov7.ktoml.encoders
 
 import com.akuleshov7.ktoml.TomlConfig
 import com.akuleshov7.ktoml.annotations.TomlComment
-import com.akuleshov7.ktoml.annotations.TomlInlineTable
+import com.akuleshov7.ktoml.annotations.TomlInline
 import com.akuleshov7.ktoml.annotations.TomlInteger
 import com.akuleshov7.ktoml.exceptions.IllegalTypeException
 import com.akuleshov7.ktoml.exceptions.InternalEncodingException
@@ -170,7 +170,7 @@ public abstract class TomlAbstractEncoder(
                     comments = it.lines.asList()
                     inlineComment = it.inline
                 }
-                is TomlInlineTable -> isInlineTable = true
+                is TomlInline -> isInlineTable = true
                 else -> { }
             }
         }

@@ -16,21 +16,21 @@ import kotlinx.serialization.SerialInfo
  * ```kotlin
  * // Examples
  *
- * @TomlInlineTable
+ * @TomlInline
  * class MyTable
  *
- * @TomlInlineTable
+ * @TomlInline
  * val myTable: MyTable
  *
- * val myTable: @TomlInlineTable MyTable
+ * val myTable: @TomlInline MyTable
  *
  *
- * @TomlInlineTable
+ * @TomlInline
  * val myTables: List<MyTable>
  *
- * val myTables: @TomlInlineTable List<MyTable>
+ * val myTables: @TomlInline List<MyTable>
  *
- * val myTables: List<@TomlInlineTable MyTable>
+ * val myTables: List<@TomlInline MyTable>
  * ```
  *
  * When [Map] value types are annotated, the map will be serialized as a table with
@@ -45,4 +45,4 @@ import kotlinx.serialization.SerialInfo
     PROPERTY,
     TYPE
 )
-public annotation class TomlInlineTable
+public annotation class TomlInline

@@ -1,7 +1,7 @@
 package com.akuleshov7.ktoml.encoders
 
 import com.akuleshov7.ktoml.TomlConfig
-import com.akuleshov7.ktoml.annotations.TomlInlineTable
+import com.akuleshov7.ktoml.annotations.TomlInline
 import com.akuleshov7.ktoml.exceptions.InternalEncodingException
 import com.akuleshov7.ktoml.tree.TomlArray
 import com.akuleshov7.ktoml.tree.TomlArrayOfTables
@@ -68,7 +68,7 @@ public class TomlArrayEncoder private constructor(
             // If the type is table-like, set isTableArray to true.
             when (descriptor.kind) {
                 CLASS, MAP ->
-                    if (!descriptor.annotations.hasInlineTableAnnotation())
+                    if (!descriptor.annotations.hasInlineAnnotation())
                         isTableArray = true
                 else -> { }
             }
@@ -133,7 +133,7 @@ public class TomlArrayEncoder private constructor(
 
     public companion object
     {
-        private fun Iterable<Annotation>.hasInlineTableAnnotation() = any { it is TomlInlineTable }
+        private fun Iterable<Annotation>.hasInlineAnnotation() = any { it is TomlInline }
 
         /**
          * Determines whether an element is a table array. An array of inline tables
@@ -141,12 +141,12 @@ public class TomlArrayEncoder private constructor(
          */
         private fun SerialDescriptor.isTableArray(index: Int): Boolean {
             // Check for the annotation on the parent
-            if (annotations.hasInlineTableAnnotation()) return false // Defer for later.
+            if (annotations.hasInlineAnnotation()) return false // Defer for later.
 
             return when (kind) {
                 CLASS -> {
                     // Check for the annotation on the member property.
-                    !getElementAnnotations(index).hasInlineTableAnnotation()
+                    !getElementAnnotations(index).hasInlineAnnotation()
                 }
                 LIST, MAP -> false // Defer for later.
                 else -> throw InternalEncodingException(
